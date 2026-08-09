@@ -12,19 +12,19 @@
   <style>
     :root {
       --bg-main: #000000;
-      --bg-card: #111111;
-      --bg-card-hover: #161616;
-      --border-color: #222222;
+      --bg-card: #0d0d11;
+      --bg-card-hover: #14141c;
+      --border-color: #222230;
       --accent-color: #00ff88;
-      --accent-2: #00d9ff;
-      --accent-glow: rgba(0, 255, 136, 0.18);
+      --accent-2: #ff0055;
+      --accent-glow: rgba(0, 255, 136, 0.25);
       --danger-color: #ff0055;
       --warning-color: #ffcc00;
       --text-main: #ffffff;
-      --text-muted: #888888;
-      --surface: rgba(255,255,255,0.035);
-      --surface-2: rgba(255,255,255,0.07);
-      --radius: 12px;
+      --text-muted: #8a8a9e;
+      --surface: rgba(255,255,255,0.04);
+      --surface-2: rgba(255,255,255,0.08);
+      --radius: 14px;
     }
 
     [data-theme="cyber-neon"] {
@@ -42,9 +42,10 @@
       --bg-card-hover: #222d35;
       --border-color: #2a3842;
       --accent-color: #2ecc71;
+      --accent-2: #e74c3c;
     }
 
-    /* Text Selection Disabled globally */
+    /* Global reset */
     * { 
       box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       user-select: none; -webkit-user-select: none; 
@@ -56,15 +57,14 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      padding-bottom: 75px;
+      padding-bottom: 80px;
     }
 
-    /* Allow inputs to be selectable */
     input, textarea { user-select: text; -webkit-user-select: text; }
 
     /* Header & Navigation */
     header {
-      background: var(--bg-card);
+      background: rgba(13, 13, 17, 0.85);
       border-bottom: 1px solid var(--border-color);
       padding: 12px 20px;
       display: flex;
@@ -73,9 +73,9 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
     }
-    .brand { font-size: 16px; font-weight: 800; color: var(--accent-color); letter-spacing: 1px; display: flex; align-items: center; gap: 8px; }
+    .brand { font-size: 16px; font-weight: 800; color: var(--accent-color); letter-spacing: 1px; display: flex; align-items: center; gap: 8px; text-shadow: 0 0 10px var(--accent-glow); }
     
     nav { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
     nav::-webkit-scrollbar { display: none; }
@@ -85,7 +85,7 @@
       white-space: nowrap; transition: all 0.2s ease;
     }
     .nav-btn:hover { border-color: var(--accent-color); color: var(--text-main); }
-    .nav-btn.active { background: var(--accent-color); color: #000000; border-color: var(--accent-color); }
+    .nav-btn.active { background: var(--accent-color); color: #000000; border-color: var(--accent-color); font-weight: 800; }
 
     /* Layout Containers */
     main { flex: 1; padding: 16px; max-width: 1400px; width: 100%; margin: 0 auto; }
@@ -95,8 +95,8 @@
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
     .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 16px; position: relative; }
     .card-title {
-      font-size: 14px; font-weight: 700; color: var(--accent-color); margin-bottom: 12px; border-bottom: 1px solid var(--border-color);
-      padding-bottom: 6px; display: flex; justify-content: space-between; align-items: center;
+      font-size: 14px; font-weight: 800; color: var(--accent-color); margin-bottom: 12px; border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: 0.5px;
     }
 
     /* Dashboard Widgets */
@@ -112,50 +112,79 @@
 
     /* Forms & Controls */
     .form-group { margin-bottom: 12px; }
-    label { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; font-weight: 600; }
+    label { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; font-weight: 700; }
     input, select, textarea {
-      width: 100%; padding: 8px 10px; background: var(--surface); border: 1px solid var(--border-color);
-      color: var(--text-main); border-radius: 6px; font-size: 13px; outline: none;
+      width: 100%; padding: 10px 12px; background: var(--surface); border: 1px solid var(--border-color);
+      color: var(--text-main); border-radius: 8px; font-size: 13px; outline: none;
     }
     input:focus, select:focus { border-color: var(--accent-color); }
 
     .btn-primary {
-      width: 100%; background: var(--accent-color); color: #000000; border: none; padding: 10px;
-      border-radius: 6px; font-weight: 700; font-size: 13px; cursor: pointer; transition: opacity 0.2s;
+      width: 100%; background: var(--accent-color); color: #000000; border: none; padding: 10px 14px;
+      border-radius: 8px; font-weight: 800; font-size: 13px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px;
     }
-    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
 
     .btn-secondary {
       background: var(--surface); color: var(--text-main); border: 1px solid var(--border-color);
-      padding: 8px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer;
+      padding: 8px 12px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer; transition: all 0.2s;
     }
-    .btn-success {
-      background: var(--surface); color: var(--accent-color); border: 1px solid var(--accent-color);
-      padding: 8px 12px; border-radius: 6px; font-weight: 600; font-size: 12px; cursor: pointer;
+    .btn-secondary:hover { border-color: var(--accent-color); }
+
+    .btn-danger {
+      background: var(--danger-color); color: #ffffff; border: none;
+      padding: 10px 14px; border-radius: 8px; font-weight: 800; font-size: 12px; cursor: pointer; text-transform: uppercase;
     }
 
-    /* Responsive Camera Stage */
-    #stage {
-      position: relative; width: 100%; max-width: 100%; height: auto; aspect-ratio: 4 / 3;
-      border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden;
-      background: #000000; margin: 0 auto;
+    .btn-success {
+      background: var(--surface); color: var(--accent-color); border: 1px solid var(--accent-color);
+      padding: 8px 12px; border-radius: 8px; font-weight: 700; font-size: 12px; cursor: pointer;
     }
+
+    /* Enhanced Camera Stage (1:1 Phone Friendly & Fullscreen Ready) */
+    #stage {
+      position: relative; 
+      width: 100%; 
+      max-width: 500px; 
+      aspect-ratio: 1 / 1; /* Default 1:1 mobile square aspect ratio */
+      border: 2px solid var(--accent-color); 
+      border-radius: 16px; 
+      overflow: hidden;
+      background: #000000; 
+      margin: 0 auto;
+      box-shadow: 0 0 25px var(--accent-glow);
+      transition: aspect-ratio 0.3s ease;
+    }
+
+    #stage:fullscreen {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: 100vw !important;
+      border-radius: 0;
+      border: none;
+      aspect-ratio: auto !important;
+    }
+
     video, canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
     video { display: none; }
 
     .hud-top-left {
-      position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.85); border: 1px solid var(--accent-color);
-      padding: 8px 10px; border-radius: 6px; z-index: 10; font-size: 11px;
+      position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.85); border: 1px solid var(--accent-color);
+      padding: 8px 12px; border-radius: 8px; z-index: 10; font-size: 11px; backdrop-filter: blur(8px);
     }
     .hud-top-right {
-      position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.85); border: 1px solid var(--border-color);
-      padding: 8px 10px; border-radius: 6px; z-index: 10; font-size: 11px; text-align: right;
+      position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.85); border: 1px solid var(--border-color);
+      padding: 8px 12px; border-radius: 8px; z-index: 10; font-size: 11px; text-align: right; backdrop-filter: blur(8px);
     }
     .hud-alert {
-      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); background: var(--danger-color);
-      color: #fff; padding: 4px 12px; border-radius: 16px; font-weight: bold; font-size: 11px; z-index: 10; display: none;
+      position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--danger-color);
+      color: #fff; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 11px; z-index: 10; display: none; text-shadow: 0 0 4px #000;
     }
-    .hud-val { color: var(--accent-color); font-weight: bold; font-size: 13px; }
+    .hud-val { color: var(--accent-color); font-weight: 800; font-size: 14px; }
+
+    .camera-actions-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; margin-top: 12px;
+    }
 
     /* Macro Distribution Visual */
     .macro-bar-wrap { display: flex; height: 12px; border-radius: 6px; overflow: hidden; background: var(--surface-2); margin: 10px 0; }
@@ -167,24 +196,24 @@
     /* Meal Logger Elements */
     .meal-list { margin-top: 10px; }
     .meal-item {
-      display: flex; justify-content: space-between; align-items: center; padding: 8px;
-      background: var(--surface); border: 1px solid var(--border-color); border-radius: 6px; margin-bottom: 6px; font-size: 12px;
+      display: flex; justify-content: space-between; align-items: center; padding: 8px 12px;
+      background: var(--surface); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 6px; font-size: 12px;
     }
 
     /* Workout Schedule UI */
     .day-selector { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 14px; scrollbar-width: none; }
     .day-btn {
       padding: 8px 12px; background: #000; border: 1px solid var(--border-color); color: var(--text-muted);
-      border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 12px; flex-shrink: 0;
+      border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 12px; flex-shrink: 0;
     }
     .day-btn.active { background: var(--accent-color); color: #000; border-color: var(--accent-color); }
 
     .exercise-card {
-      background: #000000; border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; margin-bottom: 10px;
+      background: #000000; border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; margin-bottom: 10px;
       display: grid; grid-template-columns: 110px 1fr; gap: 12px; align-items: center;
     }
     .exercise-diagram {
-      width: 110px; height: 80px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px;
+      width: 110px; height: 80px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px;
       display: flex; align-items: center; justify-content: center; text-align: center; padding: 6px; font-size: 10px; color: var(--accent-color); font-weight: bold;
     }
     .exercise-details h4 { color: #fff; font-size: 14px; margin-bottom: 4px; display: flex; justify-content: space-between; }
@@ -194,21 +223,23 @@
     /* Navigation Mobile */
     .mobile-nav {
       position: fixed; left: 10px; right: 10px; bottom: 10px; z-index: 300; display: none; grid-template-columns: repeat(6, 1fr);
-      padding: 6px; background: rgba(12,12,12,0.95); border: 1px solid var(--border-color); border-radius: 14px; backdrop-filter: blur(12px);
+      padding: 6px; background: rgba(13, 13, 17, 0.95); border: 1px solid var(--border-color); border-radius: 16px; backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.8);
     }
     .mobile-nav button { border: 0; background: transparent; color: var(--text-muted); padding: 6px 2px; border-radius: 8px; font-size: 9px; cursor: pointer; }
     .mobile-nav button span { display: block; font-size: 16px; margin-bottom: 2px; }
-    .mobile-nav button.active { color: var(--accent-color); background: var(--surface); }
+    .mobile-nav button.active { color: var(--accent-color); background: var(--surface); font-weight: bold; }
 
     /* Modals & Helpers */
     .modal-overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); backdrop-filter: blur(6px);
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); backdrop-filter: blur(8px);
       z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px;
     }
-    .modal-box { background: var(--bg-card); border: 1px solid var(--accent-color); border-radius: 12px; padding: 20px; width: 100%; max-width: 520px; }
+    .modal-box { background: var(--bg-card); border: 1px solid var(--accent-color); border-radius: 16px; padding: 20px; width: 100%; max-width: 520px; }
     .toast {
-      position: fixed; right: 16px; bottom: 75px; z-index: 500; max-width: 300px; background: var(--bg-card);
+      position: fixed; right: 16px; bottom: 80px; z-index: 500; max-width: 300px; background: var(--bg-card);
       border: 1px solid var(--accent-color); border-radius: 8px; padding: 10px 14px; display: none; font-size: 12px; color: var(--text-main);
+      box-shadow: 0 4px 20px var(--accent-glow);
     }
     .progress-wrap { height: 8px; background: var(--surface-2); border-radius: 99px; overflow: hidden; }
     .progress-bar { height: 100%; width: 0; background: var(--accent-color); transition: width .3s; }
@@ -217,11 +248,11 @@
     
     .habit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 10px; }
     .habit-btn {
-      padding: 8px; background: var(--surface); border: 1px solid var(--border-color); border-radius: 6px; font-size: 11px;
-      text-align: left; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 6px;
+      padding: 10px; background: var(--surface); border: 1px solid var(--border-color); border-radius: 8px; font-size: 11px;
+      text-align: left; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600;
     }
     .habit-btn.active { border-color: var(--accent-color); color: #fff; background: var(--surface-2); }
-    .timer-display { font-size: 36px; font-weight: 800; text-align: center; margin: 6px 0; color: var(--accent-color); font-family: monospace; }
+    .timer-display { font-size: 38px; font-weight: 900; text-align: center; margin: 6px 0; color: var(--accent-color); font-family: monospace; }
 
     @media(max-width: 768px) {
       header nav { display: none; }
@@ -327,7 +358,7 @@
   <div id="toast" class="toast"></div>
 
   <main>
-    <!-- PAGE 0: ENHANCED DASHBOARD -->
+    <!-- PAGE 0: DASHBOARD -->
     <div id="dashboardPage" class="page active">
       <div class="dashboard-hero">
         <div class="stat-card">
@@ -381,16 +412,16 @@
 
     <!-- PAGE 1: VISION TRACKER -->
     <div id="trackerPage" class="page">
-      <div class="grid" style="grid-template-columns: 2fr 1fr;">
+      <div class="grid" style="grid-template-columns: 1.8fr 1.2fr;">
         <div class="card">
           <div class="card-title">
-            <span>Computer Vision Motion Engine</span>
-            <span id="cameraStatus" style="font-size: 11px; color: var(--accent-color);">READY</span>
+            <span>Motion Tracker Stage</span>
+            <span id="cameraStatus" style="font-size: 11px; color: var(--accent-color); font-weight: 800;">● LIVE</span>
           </div>
           
           <div id="stage">
             <video id="webcam" autoplay playsinline></video>
-            <canvas id="canvas" width="640" height="480"></canvas>
+            <canvas id="canvas" width="640" height="640"></canvas>
             
             <div class="hud-top-left">
               <div>Ex: <span id="hudExercise" class="hud-val">Squat</span></div>
@@ -404,10 +435,26 @@
 
             <div id="hudAlert" class="hud-alert">INCORRECT FORM DETECTED</div>
           </div>
+
+          <!-- Camera Action Controls -->
+          <div class="camera-actions-grid">
+            <button id="camToggleBtn" class="btn-danger" onclick="toggleCamera()">⏹ Stop Camera</button>
+            <button class="btn-secondary" onclick="toggleFullscreen()">📺 Full Screen</button>
+            <button class="btn-secondary" onclick="resetReps()">🔄 Reset Reps</button>
+          </div>
         </div>
 
         <div class="card">
-          <div class="card-title">Tracker Settings</div>
+          <div class="card-title">Tracker Controls</div>
+
+          <div class="form-group">
+            <label>Camera Aspect Ratio</label>
+            <select id="aspectRatioSelect" onchange="changeAspectRatio(this.value)">
+              <option value="1/1" selected>1:1 Square (Mobile Fit)</option>
+              <option value="4/3">4:3 Standard</option>
+              <option value="16/9">16:9 Widescreen</option>
+            </select>
+          </div>
           
           <div class="form-group">
             <label>Target Movement</label>
@@ -429,12 +476,11 @@
             </select>
           </div>
 
-          <button class="btn-primary" onclick="resetReps()">Reset Rep Counter</button>
         </div>
       </div>
     </div>
 
-    <!-- PAGE 2: WORKOUT PLANNER (GYM & HOME) -->
+    <!-- PAGE 2: WORKOUT PLANNER -->
     <div id="workoutPage" class="page">
       <div class="card">
         <div class="card-title">
@@ -467,7 +513,6 @@
         <div class="card">
           <div class="card-title">Daily Meal Logger</div>
           
-          <!-- Quick Add Section -->
           <div style="margin-bottom: 12px;">
             <label>Quick Add Local Meals</label>
             <div class="action-row">
@@ -476,7 +521,6 @@
             </div>
           </div>
 
-          <!-- Custom Add Section -->
           <label>Custom Entry</label>
           <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 6px;">
             <input type="text" id="mealName" placeholder="Meal Name" style="grid-column: span 2;">
@@ -487,7 +531,6 @@
           </div>
           <button class="btn-primary" style="margin-top: 8px;" onclick="addCustomMeal()">Log Custom Meal</button>
 
-          <!-- Today's Log -->
           <div class="meal-list" id="todayMealsList"></div>
         </div>
 
@@ -627,7 +670,6 @@
     const STORAGE_KEY = 'cyberfit_pro_v2_data';
     let appData = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
     
-    // Initialize secure defaults
     appData.streak = Number(appData.streak || 0);
     appData.weeklyCount = Number(appData.weeklyCount || 0);
     appData.workoutMode = appData.workoutMode || 'gym';
@@ -636,7 +678,6 @@
     appData.prs = Array.isArray(appData.prs) ? appData.prs : [];
     appData.units = appData.units || 'kg';
     
-    // Advanced Tracking dictionaries
     appData.dietLogs = appData.dietLogs || {};
     appData.workoutSets = appData.workoutSets || {}; 
 
@@ -646,6 +687,7 @@
     let repCount = 0;
     let poseStage = 'up';
     let currentDaySelected = 'Mon';
+    let cameraRunning = true;
     const todayKey = new Date().toLocaleDateString();
 
     function persist(){
@@ -734,7 +776,6 @@
       loadDaySchedule('Mon');
     }
 
-    // --- ACCURATE WORKOUT LOGGING ---
     function logSet(exName, targetSets) {
       if(!appData.workoutSets[todayKey]) appData.workoutSets[todayKey] = {};
       const currentSets = appData.workoutSets[todayKey][exName] || 0;
@@ -749,7 +790,7 @@
       }
     }
 
-    // Workout Database (Gym vs Home)
+    // Workout Database
     const workoutDatabase = {
       gym: {
         Mon: [
@@ -926,7 +967,6 @@
       });
       document.getElementById('todayMealsList').innerHTML = html || '<div style="font-size:11px; color:#888;">No meals logged today.</div>';
 
-      // Update Diet Page Bars
       document.getElementById('calConsumed').textContent = totCal;
       const calPct = Math.min(100, (totCal / (macroTargets.cal || 1)) * 100);
       document.getElementById('macroProgressCals').style.width = `${calPct}%`;
@@ -939,7 +979,6 @@
       document.getElementById('cBar').style.width = `${Math.min(100, (totC / (macroTargets.c || 1)) * 100)}%`;
       document.getElementById('fBar').style.width = `${Math.min(100, (totF / (macroTargets.f || 1)) * 100)}%`;
 
-      // Update Dashboard Bars
       const totalMacros = totP + totC + totF;
       const dashP = totalMacros > 0 ? (totP / totalMacros) * 100 : 0;
       const dashC = totalMacros > 0 ? (totC / totalMacros) * 100 : 0;
@@ -963,7 +1002,6 @@
       document.getElementById('dashWeeklyCount').textContent = `${appData.weeklyCount} / 6`;
       document.getElementById('dashSomatotype').textContent = p ? p.somatotype : 'Mesomorph';
 
-      // Sync Habit Buttons
       ['Hydration', 'Protein', 'Sleep', 'Creatine'].forEach(h => {
         const btn = document.getElementById(`habit${h}`);
         if(btn) btn.classList.toggle('active', !!appData.habits[h]);
@@ -1042,7 +1080,6 @@
       appData.logs.unshift({ date: todayKey, weight: weight || null, unit, note });
       appData.logs = appData.logs.slice(0, 10);
       
-      // Update global weight profile silently
       if(weight && userProfile) { userProfile.weight = weight; recalculateNutrition(); }
       
       persist(); 
@@ -1075,7 +1112,7 @@
       location.reload();
     }
 
-    // --- VISION TRACKER ---
+    // --- VISION TRACKER CONTROLS & CAMERA logic ---
     const videoElement = document.getElementById('webcam');
     const canvasElement = document.getElementById('canvas');
     const canvasCtx = canvasElement.getContext('2d');
@@ -1089,6 +1126,49 @@
       resetReps();
       const ex = document.getElementById('exerciseSelect').value;
       document.getElementById('hudExercise').textContent = ex.toUpperCase();
+    }
+
+    function changeAspectRatio(ratioVal) {
+      const stage = document.getElementById('stage');
+      stage.style.aspectRatio = ratioVal;
+    }
+
+    function toggleCamera() {
+      const btn = document.getElementById('camToggleBtn');
+      const status = document.getElementById('cameraStatus');
+      
+      if (cameraRunning) {
+        camera.stop();
+        cameraRunning = false;
+        btn.textContent = '▶ Start Camera';
+        btn.className = 'btn-primary';
+        status.textContent = '○ OFFLINE';
+        status.style.color = 'var(--text-muted)';
+        toast('Camera paused.');
+      } else {
+        camera.start();
+        cameraRunning = true;
+        btn.textContent = '⏹ Stop Camera';
+        btn.className = 'btn-danger';
+        status.textContent = '● LIVE';
+        status.style.color = 'var(--accent-color)';
+        toast('Camera resumed.');
+      }
+    }
+
+    function toggleFullscreen() {
+      const stage = document.getElementById('stage');
+      if (!document.fullscreenElement) {
+        if (stage.requestFullscreen) {
+          stage.requestFullscreen();
+        } else if (stage.webkitRequestFullscreen) {
+          stage.webkitRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
     }
 
     function calculateAngle(a, b, c) {
@@ -1123,7 +1203,7 @@
         ];
 
         canvasCtx.strokeStyle = color;
-        canvasCtx.lineWidth = 3;
+        canvasCtx.lineWidth = 4;
 
         connections.forEach(([i, j]) => {
           if (lm[i] && lm[j] && lm[i].visibility > 0.5 && lm[j].visibility > 0.5) {
@@ -1173,13 +1253,17 @@
     });
 
     const camera = new Camera(videoElement, {
-      onFrame: async () => { await pose.send({ image: videoElement }); },
+      onFrame: async () => { 
+        if (cameraRunning) {
+          await pose.send({ image: videoElement });
+        }
+      },
       width: 640,
-      height: 480
+      height: 640
     });
     camera.start();
 
-    // --- BOOT ---
+    // Boot
     window.onload = () => {
       if(appData.profile){
         userProfile = appData.profile;
